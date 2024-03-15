@@ -1,19 +1,29 @@
-package com.github.saturnvolv.loded.client.waypoint;
+package com.github.saturnvolv.witl.client.waypoint;
 
+import com.github.saturnvolv.witl.client.LodedClient;
+import com.github.saturnvolv.witl.compat.Mods;
+import com.github.saturnvolv.witl.compat.xaerominimap.WaypointSharer;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.CompassItem;
 import net.minecraft.item.ItemStack;
+import xaero.common.core.XaeroMinimapCore;
+import xaero.common.minimap.waypoints.Waypoint;
+import xaero.common.minimap.waypoints.WaypointsManager;
 
 import java.util.*;
 
 public class WaypointHandler {
     private static final Map<ItemStack, LodestoneWaypoint> WAYPOINTS = new HashMap<>();
     public static void addWaypoint(LodestoneWaypoint waypoint) {
-        WAYPOINTS.put(waypoint.compass(), waypoint);
+        Optional<Boolean> shareIfPresent = Mods.XAERO_MINIMAP.runIfInstalled(() -> () -> WaypointSharer.shareWaypoint(waypoint));
+        if (shareIfPresent.isEmpty() || !shareIfPresent.get())
+            WAYPOINTS.put(waypoint.compass(), waypoint);
     }
-    public static void removeWaypoint(LodestoneWaypoint waypoint) {
-        WAYPOINTS.remove(waypoint.compass());
+    private static void clearWaypoints() {
+        Optional<Boolean> clearIfPresent = Mods.XAERO_MINIMAP.runIfInstalled(() -> WaypointSharer::clearWaypoints);
+        if (clearIfPresent.isEmpty() || !clearIfPresent.get())
+            WAYPOINTS.clear();
     }
     public static LodestoneWaypoint getWaypoint(ItemStack itemStack) {
         return WAYPOINTS.getOrDefault(itemStack, new LodestoneWaypoint(itemStack));
@@ -23,7 +33,7 @@ public class WaypointHandler {
     }
 
     public static void update(ClientPlayerEntity user) {
-        WAYPOINTS.clear();
+        clearWaypoints();
         PlayerInventory playerInv = user.getInventory();
         for (int i = 0; i < playerInv.size(); i++) {
             ItemStack stack = playerInv.getStack(i);

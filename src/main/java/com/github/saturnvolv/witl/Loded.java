@@ -1,4 +1,4 @@
-package com.github.saturnvolv.loded;
+package com.github.saturnvolv.witl;
 
 import net.fabricmc.api.ModInitializer;
 

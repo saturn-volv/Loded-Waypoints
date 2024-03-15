@@ -1,23 +1,16 @@
-package com.github.saturnvolv.loded.client.waypoint;
+package com.github.saturnvolv.witl.client.waypoint;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.enums.BlockFace;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.LogoDrawer;
-import net.minecraft.client.gui.PlayerSkinDrawer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.render.BufferBuilderStorage;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.DiffuseLighting;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.chunk.BlockBufferBuilderPool;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
@@ -187,9 +180,9 @@ public class WaypointRenderer {
 
         matrixStackOverlay.translate( halfIconPixel, 0, 0);
         matrixStackOverlay.scale(iconScale, iconScale, 1.0f);
-        RenderSystem.setShaderColor(1, 1, 1, waypoint.isSelected() ? 0.75f : 0.3f);
-        this.matrixStackOverlay.fill(-6, -8, 6, 4, 0xFFFFFFFF);
-        this.matrixStackOverlay.fill(-4, -6, 4, 2, 0xFFFF00FF);
+        RenderSystem.setShaderColor(1, 1, 1, waypoint.isSelected() ? 0.95f : 0.55f);
+        int col = waypoint.color() + 0xFF000000;
+        this.matrixStackOverlay.fill(-4, -6, 4, 2, col);
         //this.matrixStackOverlay.drawItem(waypoint.compass(), -8, -16);
         RenderSystem.setShaderColor(1, 1, 1, 1);
 

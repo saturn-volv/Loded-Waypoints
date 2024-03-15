@@ -1,4 +1,4 @@
-package com.github.saturnvolv.loded.client.waypoint;
+package com.github.saturnvolv.witl.client.waypoint;
 
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.math.Vec3d;

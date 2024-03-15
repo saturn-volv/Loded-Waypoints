@@ -1,6 +1,6 @@
-package com.github.saturnvolv.loded.client.waypoint;
+package com.github.saturnvolv.witl.client.waypoint;
 
-import com.github.saturnvolv.loded.client.LodedClient;
+import com.github.saturnvolv.witl.client.LodedClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.Camera;
@@ -13,14 +13,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.GlobalPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import xaero.common.minimap.waypoints.Waypoint;
+
+import java.awt.*;
 
 public class LodestoneWaypoint {
     private final GlobalPos pos;
     private final ItemStack compass;
-    private final boolean farAway;
     private boolean isSelectedItem = false;
-    private boolean failed = false;
+    private final boolean failed;
+    private int color;
 
     public LodestoneWaypoint( ItemStack stack ) {
         NbtCompound lodestoneNbt = stack.getNbt();
@@ -29,7 +33,8 @@ public class LodestoneWaypoint {
         this.compass = stack;
         this.pos = CompassItem.createLodestonePos(lodestoneNbt);
         failed = this.pos == null;
-        this.farAway = !this.isClientInRange(10);
+        if (!failed)
+            this.color = Random.create(pos.getPos().asLong()).nextInt(0xFFFFFF);
     }
 
     public BlockPos position() {
@@ -56,11 +61,8 @@ public class LodestoneWaypoint {
     public boolean failed() {
         return this.failed;
     }
-
-    private boolean isClientInRange(int distance) {
-        ClientPlayerEntity clientPlayer = LodedClient.getPlayer();
-        if (clientPlayer == null || this.failed) return false;
-        return clientPlayer.getBlockPos().isWithinDistance(this.position(), distance);
+    public int color() {
+        return this.color;
     }
 
     public static float angleOfWaypoint(BlockPos pos) {

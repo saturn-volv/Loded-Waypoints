@@ -1,6 +1,6 @@
-package com.github.saturnvolv.loded.mixin;
+package com.github.saturnvolv.witl.mixin;
 
-import com.github.saturnvolv.loded.client.waypoint.WaypointModel;
+import com.github.saturnvolv.witl.client.waypoint.WaypointModel;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import org.joml.Matrix4f;

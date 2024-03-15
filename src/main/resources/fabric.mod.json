@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "id": "loded",
+  "id": "witl",
   "version": "${version}",
-  "name": "Loded",
-  "description": "",
+  "name": "W.I.T.L",
+  "description": "\"Where Is That Lodestone\"",
   "authors": [],
   "contact": {
-    "repo": "https://github.com/saturn/Loded"
+    "repo": "https://github.com/saturn-volv/WITL"
   },
   "license": "Apache-2.0",
-  "icon": "assets/loded/icon.png",
+  "icon": "assets/witl/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "com.github.saturnvolv.loded.client.LodedClient"
+      "com.github.saturnvolv.witl.client.LodedClient"
     ],
     "main": [
-      "com.github.saturnvolv.loded.Loded"
+      "com.github.saturnvolv.witl.Loded"
     ]
   },
   "mixins": [
@@ -26,5 +26,8 @@
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "${minecraft_version}"
+  },
+  "suggests": {
+    "xaerominimap": "*"
   }
 }

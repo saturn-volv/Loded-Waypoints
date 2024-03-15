@@ -26,6 +26,9 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    // Soft depend for Minimap mod implementation.
+
+    compileOnly(files('libs/Xaeros_Minimap_23.9.7_Fabric_1.20.4.jar'))
 }
 
 processResources {

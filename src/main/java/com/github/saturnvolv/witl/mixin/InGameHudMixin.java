@@ -1,6 +1,6 @@
-package com.github.saturnvolv.loded.mixin;
+package com.github.saturnvolv.witl.mixin;
 
-import com.github.saturnvolv.loded.client.waypoint.WaypointModel;
+import com.github.saturnvolv.witl.client.waypoint.WaypointModel;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import org.spongepowered.asm.mixin.Mixin;

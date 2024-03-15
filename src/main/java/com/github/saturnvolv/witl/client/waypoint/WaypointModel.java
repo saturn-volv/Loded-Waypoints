@@ -1,4 +1,4 @@
-package com.github.saturnvolv.loded.client.waypoint;
+package com.github.saturnvolv.witl.client.waypoint;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.systems.VertexSorter;
